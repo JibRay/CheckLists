@@ -7,13 +7,22 @@
 
 import SwiftUI
 
+let checklists: Checklists = Checklists()
+
 struct ContentView: View {
+    private var titles = checklists.catalog()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+//            Image(systemName: "globe")
+//                .imageScale(.large)
+//                .foregroundStyle(.tint)
+            
+
+            Text("Checklists:")
+            List(titles) {
+                Text($0.name)
+            }
         }
         .padding()
     }
