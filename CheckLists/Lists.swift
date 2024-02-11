@@ -11,11 +11,11 @@ import SwiftUI
 // An item in a checklist.
 struct Item {
     var completed: Bool
-    let text: String
+    let text: ChecklistItem
     
     init(text: String) {
         self.completed = false
-        self.text = text
+        self.text = ChecklistItem(name: text)
     }
 }
 
@@ -42,7 +42,14 @@ struct Checklist {
     }
 }
 
+// Checklist title used in a List.
 struct Title: Identifiable {
+    let name: String
+    let id = UUID()
+}
+
+// Checklist item description used in a List.
+struct ChecklistItem: Identifiable {
     let name: String
     let id = UUID()
 }
@@ -73,10 +80,11 @@ struct Checklists {
                 Item(text: "Watch"),
                 Item(text: "Timer"),
                 Item(text: "Water"),
-                Item(text: "Gnu")
+                Item(text: "Gu")
                ])
     ]
     
+    // Return a list of all the checklist titles.
     func catalog() -> [Title] {
         var titles: [Title] = []
         
@@ -87,16 +95,41 @@ struct Checklists {
         return titles
     }
     
-    func select(index: Int) -> Checklist {
-        return lists[index]
+    // Return a list of all the items in the checklist selected by
+    // index.
+    func checklistItems(index: Int) -> [ChecklistItem] {
+        var items: [ChecklistItem] = []
+        
+        for listItem in lists[index].items {
+            items.append(listItem.text)
+        }
+        
+        return items
     }
+    
+    //func select(index: Int) -> Checklist {
+    //    return lists[index]
+    //}
 }
 
+// Display the checklist selected by index.
 struct ChecklistView: View {
-    var checklist: Checklist
+    private var title = ""
+    private var items: [ChecklistItem] = []
+    
     var body: some View {
         VStack {
-            
+            Text(title)
+            List(items) {
+                Text($0.name)
+            }
+        }
+    }
+    
+    init(title: String, items: [Item]) {
+        self.title = title
+        for item in items {
+            self.items.append(item.text)
         }
     }
 }

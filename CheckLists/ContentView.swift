@@ -11,18 +11,17 @@ let checklists: Checklists = Checklists()
 
 struct ContentView: View {
     private var titles = checklists.catalog()
+    private var index: Int = 0
+    
     
     var body: some View {
         VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundStyle(.tint)
-            
-
-            Text("Checklists:")
-            List(titles) {
-                Text($0.name)
-            }
+            //Text("Checklists:")
+            //List(titles) {
+            //    Text($0.name)
+            //}
+            ChecklistView(title: checklists.catalog()[index].name,
+                          items: checklists.lists[index].items)
         }
         .padding()
     }
