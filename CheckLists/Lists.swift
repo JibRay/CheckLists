@@ -100,22 +100,19 @@ struct Checklists {
         return titles
     }
     
-    // Return a list of all the items in the checklist selected by
-    // index.
-    func checklistItems(index: Int) -> [ChecklistItem] {
-        var items: [ChecklistItem] = []
-        
-        for listItem in lists[index].items {
-            items.append(listItem.text)
+    // Return the index of the checklist with title.
+    func indexOf(title: String) -> Int {
+        for index in 0..<lists.count {
+            if (title == lists[index].title) {
+                return index
+            }
         }
-        
-        return items
+        return -1
     }
 }
-
+    
 // Display a checklist title and items.
 struct ChecklistView: View {
-    
     // Set to hold the selected rows.
     @State private var multiSelection = Set<UUID>()
 
