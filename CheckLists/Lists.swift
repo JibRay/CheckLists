@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 // An item in a checklist.
+// FIXME: May not need separate Item and CheckListItem.
 struct Item {
     var completed: Bool
     let text: ChecklistItem
@@ -48,7 +49,7 @@ struct Title: Identifiable {
     let id = UUID()
 }
 
-// Checklist item description used in a List.
+// Checklist item description.
 struct ChecklistItem: Identifiable {
     let name: String
     let id = UUID()
@@ -56,6 +57,8 @@ struct ChecklistItem: Identifiable {
 
 // New checklists are created here.
 struct Checklists {
+    
+    // All the checklists.
     let lists: [Checklist] =
     [Checklist(title: "Trailer",
                items: [
@@ -63,18 +66,20 @@ struct Checklists {
                 Item(text: "Strut dolly wheel removed"),
                 Item(text: "Strut completely retracted"),
                 Item(text: "Chains connected"),
-                Item(text: "Electrical connector connected"),
+                Item(text: "Electrical cable connected"),
                 Item(text: "Running and flasher lights working"),
                 Item(text: "Tailgate secure"),
                 Item(text: "Tire pressures good"),
                 Item(text: "No loose items in trailer bed")
                ]),
+     
      Checklist(title: "Town",
                items: [
                 Item(text: "Wallet"),
                 Item(text: "Keys"),
                 Item(text: "Shoping list")
                ]),
+     
      Checklist(title: "Run",
                items: [
                 Item(text: "Watch"),
@@ -106,26 +111,28 @@ struct Checklists {
         
         return items
     }
-    
-    //func select(index: Int) -> Checklist {
-    //    return lists[index]
-    //}
 }
 
-// Display the checklist selected by index.
+// Display a checklist title and items.
 struct ChecklistView: View {
+    
+    // Set to hold the selected rows.
+    @State private var multiSelection = Set<UUID>()
+
     private var title = ""
     private var items: [ChecklistItem] = []
     
     var body: some View {
-        VStack {
-            Text(title)
-            List(items) {
+        NavigationStack {
+            List(items, selection: $multiSelection) {
                 Text($0.name)
             }
+            .navigationTitle(title)
+            .toolbar { EditButton() }
         }
     }
     
+    // Input is a title and a list of checklist items.
     init(title: String, items: [Item]) {
         self.title = title
         for item in items {

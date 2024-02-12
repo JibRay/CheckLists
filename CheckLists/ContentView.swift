@@ -11,11 +11,13 @@ let checklists: Checklists = Checklists()
 
 struct ContentView: View {
     private var titles = checklists.catalog()
+    
+    // This is the index of the currently selected checklist.
     private var index: Int = 0
     
     
     var body: some View {
-        VStack {
+        NavigationStack {
             //Text("Checklists:")
             //List(titles) {
             //    Text($0.name)
