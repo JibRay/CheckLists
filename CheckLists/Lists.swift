@@ -129,10 +129,11 @@ struct ChecklistView: View {
         }
     }
     
-    // Input is a title and a list of checklist items.
-    init(title: String, items: [Item]) {
+    // Input is a checklist title.
+    init(title: String) {
+        let checklists: Checklists = Checklists()
         self.title = title
-        for item in items {
+        for item in checklists.lists[checklists.indexOf(title: title)].items {
             self.items.append(item.text)
         }
     }

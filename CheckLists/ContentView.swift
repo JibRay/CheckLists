@@ -19,8 +19,7 @@ struct ContentView: View {
             List(titles) {
                 row in
                 NavigationLink(row.name) {
-                    ChecklistView(title: row.name,
-                                  items: checklists.lists[checklists.indexOf(title: row.name)].items)
+                    ChecklistView(title: row.name)
                 }
             }
         }
