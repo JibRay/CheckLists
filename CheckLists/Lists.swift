@@ -58,9 +58,35 @@ struct Checklists {
      
      Checklist(title: "Run",
                items: [
-                Item(name: "Watch"),
+                Item(name: "Garmin watch"),
                 Item(name: "Timer"),
                 Item(name: "Water"),
+                Item(name: "Gu")
+               ]),
+     
+     Checklist(title: "Long Run",
+               items: [
+                Item(name: "Garmin watch"),
+                Item(name: "Timer"),
+                Item(name: "ID bracelet"),
+                Item(name: "Fuel vest"),
+                Item(name: "Thermal bkanket"),
+                Item(name: "Water"),
+                Item(name: "Gu"),
+                Item(name: "Phone")
+               ]),
+     
+     Checklist(title: "Race",
+               items: [
+                Item(name: "Tote bag"),
+                Item(name: "Shoes"),
+                Item(name: "Socks"),
+                Item(name: "Shorts"),
+                Item(name: "Shirts"),
+                Item(name: "Down jacket"),
+                Item(name: "Rain jacket"),
+                Item(name: "Garmin watch"),
+                Item(name: "Timer"),
                 Item(name: "Gu")
                ]),
      
