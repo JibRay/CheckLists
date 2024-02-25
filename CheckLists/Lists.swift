@@ -53,7 +53,8 @@ struct Checklists {
                items: [
                 Item(name: "Wallet"),
                 Item(name: "Keys"),
-                Item(name: "Shoping list")
+                Item(name: "Shoping list"),
+                Item(name: "Jane's radio")
                ]),
      
      Checklist(title: "Run",
@@ -70,10 +71,12 @@ struct Checklists {
                 Item(name: "Timer"),
                 Item(name: "ID bracelet"),
                 Item(name: "Fuel vest"),
-                Item(name: "Thermal bkanket"),
+                Item(name: "Thermal blanket"),
                 Item(name: "Water"),
                 Item(name: "Gu"),
-                Item(name: "Phone")
+                Item(name: "Phone"),
+                Item(name: "Gloves"),
+                Item(name: "Jane's radio")
                ]),
      
      Checklist(title: "Race",
