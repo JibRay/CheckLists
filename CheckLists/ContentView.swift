@@ -21,6 +21,9 @@ struct ContentView: View {
                 NavigationLink(row.name) {
                     ChecklistView(title: row.name)
                 }
+                .listRowBackground(
+                    row.emergency ?
+                    Color(red: 1.0, green: 0.6, blue: 0.6) : Color.white)
             }
         }
         .padding()

@@ -11,6 +11,7 @@ import SwiftUI
 // Checklist title.
 struct Title: Identifiable {
     let name: String
+    let emergency: Bool
     let id = UUID()
 }
 
@@ -23,10 +24,12 @@ struct Item: Identifiable {
 // A checklist.
 struct Checklist {
     let title: String
+    let emergency: Bool
     let items: [Item]
     
-    init(title: String, items: [Item]) {
+    init(title: String, emergency: Bool, items: [Item]) {
         self.title = title
+        self.emergency = emergency
         self.items = items
     }
 }
@@ -36,7 +39,7 @@ struct Checklists {
     
     // All the checklists.
     let lists: [Checklist] =
-    [Checklist(title: "Trailer",
+    [Checklist(title: "Trailer", emergency: false,
                items: [
                 Item(name: "Hitch coupled to ball and locked"),
                 Item(name: "Strut dolly wheel removed"),
@@ -49,7 +52,7 @@ struct Checklists {
                 Item(name: "No loose items in trailer bed")
                ]),
      
-     Checklist(title: "Town",
+     Checklist(title: "Town", emergency: false,
                items: [
                 Item(name: "Wallet"),
                 Item(name: "Keys"),
@@ -58,7 +61,7 @@ struct Checklists {
                 Item(name: "Jane's radio")
                ]),
      
-     Checklist(title: "Run",
+     Checklist(title: "Run", emergency: false,
                items: [
                 Item(name: "Garmin watch"),
                 Item(name: "Timer"),
@@ -66,7 +69,7 @@ struct Checklists {
                 Item(name: "Gu")
                ]),
      
-     Checklist(title: "Long Run",
+     Checklist(title: "Long Run", emergency: false,
                items: [
                 Item(name: "Garmin watch"),
                 Item(name: "Timer"),
@@ -80,7 +83,7 @@ struct Checklists {
                 Item(name: "Jane's radio")
                ]),
      
-     Checklist(title: "Race",
+     Checklist(title: "Race", emergency: false,
                items: [
                 Item(name: "Tote bag"),
                 Item(name: "Shoes"),
@@ -95,7 +98,7 @@ struct Checklists {
                 Item(name: "Town checklist")
                ]),
      
-     Checklist(title: "Bike Ride",
+     Checklist(title: "Bike Ride", emergency: false,
                items: [
                 Item(name: "Gloves"),
                 Item(name: "Helmet"),
@@ -111,7 +114,7 @@ struct Checklists {
                 Item(name: "Jane's radio")
                ]),
      
-     Checklist(title: "N46JR Preflight",
+     Checklist(title: "N46JR Preflight", emergency: false,
                items: [
                 Item(name: "POH on board"),
                 Item(name: "iPAD on board"),
@@ -157,7 +160,7 @@ struct Checklists {
                 Item(name: "Right strut checked")
                ]),
      
-     Checklist(title: "N46JR Cabin",
+     Checklist(title: "N46JR Cabin", emergency: false,
                items: [
                 Item(name: "Brief passagers"),
                 Item(name: "Doors & windows closed and latched"),
@@ -167,7 +170,7 @@ struct Checklists {
                 Item(name: "Fuel valve to both or fullest")
                ]),
      
-     Checklist(title: "N46JR Cold Start",
+     Checklist(title: "N46JR Cold Start", emergency: false,
                items: [
                 Item(name: "Mixture to full rich"),
                 Item(name: "Throttle to full open"),
@@ -181,7 +184,7 @@ struct Checklists {
                 Item(name: "Check oil pressure in green arc")
                ]),
      
-     Checklist(title: "N46JR Warm Start",
+     Checklist(title: "N46JR Warm Start", emergency: false,
                items: [
                 Item(name: "Mixture to full rich"),
                 Item(name: "Throttle to full open"),
@@ -198,7 +201,7 @@ struct Checklists {
                 Item(name: "Check oil pressure in green arc")
                ]),
      
-     Checklist(title: "N46JR Taxi",
+     Checklist(title: "N46JR Taxi", emergency: false,
                items: [
                 Item(name: "Check fuel quantity"),
                 Item(name: "Set altimeter"),
@@ -208,7 +211,7 @@ struct Checklists {
                 Item(name: "Landing light as needed"),
                ]),
      
-     Checklist(title: "N46JR Run-up",
+     Checklist(title: "N46JR Run-up", emergency: false,
                items: [
                 Item(name: "Set brakes"),
                 Item(name: "RPM to 1500"),
@@ -220,7 +223,26 @@ struct Checklists {
                 Item(name: "Flaps as needed"),
                 Item(name: "Trim to take-off"),
                 Item(name: "Transponder on")
-               ])
+               ]),
+     
+     Checklist(title: "N46JR Landing", emergency: false,
+               items: [
+                Item(name: "Fuel valve to both or fullest"),
+                Item(name: "Set altimeter"),
+                Item(name: "Set directional gyro"),
+                Item(name: "Mixture full rich or appropriate for altitude"),
+                Item(name: "Seat belts fastened"),
+                Item(name: "Landing light as needed"),
+               ]),
+     
+     Checklist(title: "N46JR Engine out", emergency: true,
+               items: [
+                Item(name: "Trim for best glide speed"),
+                Item(name: "Select a landing site"),
+                Item(name: "Fuel valve to both or fullest"),
+                Item(name: "Mixture full rich"),
+                Item(name: "Both ignition switches to backup"),
+               ]),
     ]
     
     // Return a list of all the checklist titles.
@@ -228,7 +250,7 @@ struct Checklists {
         var titles: [Title] = []
         
         for list in lists {
-            titles.append(Title(name: list.title))
+            titles.append(Title(name: list.title, emergency: list.emergency))
         }
         
         return titles
